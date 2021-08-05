@@ -1,29 +1,27 @@
 package com.rizalpurnama.todolist.repository;
 
 import com.rizalpurnama.todolist.entity.TodoList;
+import com.rizalpurnama.todolist.helper.KoneksiDatabase;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TodolistRepositoryImpl implements TodolistRepository{
+public class TodolistDao {
+    private KoneksiDatabase koneksiDatabase;
 
-    Connection connection;
-
-    public TodolistRepositoryImpl(Connection connection) {
-        this.connection = connection;
+    public TodolistDao(KoneksiDatabase koneksiDatabase) {
+        this.koneksiDatabase = koneksiDatabase;
     }
 
-    @Override
-    public List<TodoList> getAll() {
-
+    public List<TodoList> getAll(){
+        koneksiDatabase.connect();
         List<TodoList> listResult = new ArrayList<>();
 
         final String SQL_SELECT_ALL = "SELECT * FROM todo";
-        try(PreparedStatement ps = connection.prepareStatement(SQL_SELECT_ALL)) {
+        try(PreparedStatement ps = koneksiDatabase.getConnection().prepareStatement(SQL_SELECT_ALL)) {
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()){
                 TodoList todoList = new TodoList();
@@ -34,21 +32,7 @@ public class TodolistRepositoryImpl implements TodolistRepository{
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
+        koneksiDatabase.disconnect();
         return listResult;
-    }
-
-    @Override
-    public void add(TodoList todoList) {
-
-    }
-
-    @Override
-    public boolean remove(Integer number) {
-        return false;
-    }
-
-    @Override
-    public Integer getKey() {
-        return null;
     }
 }
