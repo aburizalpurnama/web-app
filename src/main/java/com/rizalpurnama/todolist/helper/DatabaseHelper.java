@@ -17,12 +17,6 @@ public class DatabaseHelper {
             connection = DriverManager.getConnection(url, username, password);
         } catch (SQLException exception) {
             exception.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException exception) {
-                exception.printStackTrace();
-            }
         }
 
         return connection;
