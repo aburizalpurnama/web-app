@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd">
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
 
         <!--
             String url = "jdbc:mysql://localhost/db_todolist";
@@ -23,8 +26,10 @@
     <!--
         TodolistRepository repository = new TodolistRepositoryImpl(connection);
     -->
-    <bean id="repository" class="com.rizalpurnama.todolist.repository.TodolistDao">
-        <constructor-arg ref="koneksiDatabase"/>
-    </bean>
+<!--    <bean id="repository" class="com.rizalpurnama.todolist.repository.TodolistDao">-->
+<!--        <constructor-arg ref="koneksiDatabase"/>-->
+<!--    </bean>-->
 
+    <!-- Mendeklarasikan component scan sehingga tidak perlu mendeklarasikan objek satu persatu seperti diatas-->
+    <context:component-scan base-package="com.rizalpurnama.todolist.repository"/>
 </beans>

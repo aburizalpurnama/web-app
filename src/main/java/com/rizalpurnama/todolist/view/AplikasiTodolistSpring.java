@@ -28,14 +28,14 @@ public class AplikasiTodolistSpring extends HttpServlet {
             PrintWriter writer = resp.getWriter();
 
             ApplicationContext springContainer = new ClassPathXmlApplicationContext("web-app.xml");
-            TodolistDao repository = (TodolistDao) springContainer.getBean("repository");
+            TodolistDao repository = (TodolistDao) springContainer.getBean(TodolistDao.class);
 
             writer.println("<html>" +
                     "<head> " +
                     "<title>Todolist Application</title>" +
                     "</head> ");
             writer.println(     "<body>");
-            writer.println(         "<h1>Todolist</h1>");
+            writer.println(         "<h1>Todolist Spring</h1>");
             writer.println(         "<table border=1>" +
                     "<thead>" +
                     "<tr>" +

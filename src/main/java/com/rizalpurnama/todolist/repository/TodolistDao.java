@@ -2,6 +2,8 @@ package com.rizalpurnama.todolist.repository;
 
 import com.rizalpurnama.todolist.entity.TodoList;
 import com.rizalpurnama.todolist.helper.KoneksiDatabase;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,12 +11,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class TodolistDao {
-    private KoneksiDatabase koneksiDatabase;
 
-    public TodolistDao(KoneksiDatabase koneksiDatabase) {
-        this.koneksiDatabase = koneksiDatabase;
-    }
+    @Autowired
+    private KoneksiDatabase koneksiDatabase;
 
     public List<TodoList> getAll(){
         koneksiDatabase.connect();

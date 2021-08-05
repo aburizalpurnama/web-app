@@ -41,17 +41,9 @@ public class AplikasiTodolist extends HttpServlet {
 
 
             PrintWriter writer = resp.getWriter();
-//            TodolistRepository repository = new TodolistRepositoryImpl(connection);
+            TodolistRepository repository = new TodolistRepositoryImpl(connection);
 
-            /**
-             * Pembuatan Objek Koneksi database ini akan diimplementasikan dalam bentuk xml di spring
-             */
-            KoneksiDatabase koneksiDatabase = new KoneksiDatabase();
-            koneksiDatabase.setUrl(url);
-            koneksiDatabase.setUsername(username);
-            koneksiDatabase.setPassword(password);
 
-            TodolistDao repository = new TodolistDao(koneksiDatabase);
 
             writer.println("<html>" +
                     "<head> " +
